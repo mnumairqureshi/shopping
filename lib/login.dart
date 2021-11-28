@@ -11,6 +11,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   TextEditingController txt = TextEditingController();
+  // String password = "1Great2";
 
   @override
   Widget build(BuildContext context) {
@@ -190,3 +191,5 @@ class _LoginState extends State<Login> {
     );
   }
 }
+
+class constant {}
