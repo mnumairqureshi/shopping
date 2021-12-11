@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
+import 'package:shopping/signup.dart';
 
 // ignore: camel_case_types
 class Login extends StatefulWidget {
@@ -10,8 +12,24 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  TextEditingController txt = TextEditingController();
-  // String password = "1Great2";
+  TextEditingController emailtxt = TextEditingController();
+  TextEditingController passwdtxt = TextEditingController();
+
+  FirebaseAuth auth = FirebaseAuth.instance;
+  Future signInWithEmailAndPassword() async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: "barry.allen@example.com",
+              password: "SuperSecretPassword!");
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +110,7 @@ class _LoginState extends State<Login> {
                   child: Column(
                     children: [
                       TextFormField(
+                        controller: emailtxt,
                         // child: TextField(
                         decoration: InputDecoration(
                           labelText: "Email",
@@ -107,8 +126,8 @@ class _LoginState extends State<Login> {
                         height: 7.5,
                       ),
                       TextField(
-                          controller: txt,
-                          obscureText: true,
+                          controller: passwdtxt,
+                          obscureText: false,
                           decoration: InputDecoration(
                               labelText: "Password",
                               fillColor: Colors.grey.shade200,
@@ -119,24 +138,22 @@ class _LoginState extends State<Login> {
                       const SizedBox(
                         height: 1,
                       ),
-                      FlutterPwValidator(
-                          width: 400,
-                          height: 70,
-                          minLength: 7,
-                          uppercaseCharCount: 1,
-                          numericCharCount: 2,
-                          successColor: Colors.green,
-                          failureColor: Colors.red,
-                          // specialCharCount: 1,
-                          onSuccess: () {
-                            Navigator.pushNamed(context, 'home');
-
-                            // print("Matched");
-
-                            // Scaffold.of(context).showSnackBar(
-                            //     SnackBar(content: Text("Password is matched")));
-                          },
-                          controller: txt),
+                      // FlutterPwValidator(
+                      //     width: 400,
+                      //     height: 70,
+                      //     minLength: 7,
+                      //     uppercaseCharCount: 1,
+                      //     numericCharCount: 2,
+                      //     successColor: Colors.green,
+                      //     failureColor: Colors.red,
+                      //     // specialCharCount: 1,
+                      //     onSuccess: () {
+                      //       Navigator.pushNamed(context, 'home');
+                      //       // print("Matched");
+                      //       // Scaffold.of(context).showSnackBar(
+                      //       //     SnackBar(content: Text("Password is matched")));
+                      //     },
+                      //     controller: passwdtxt),
                       const SizedBox(
                         height: 125,
                       ),
@@ -145,7 +162,8 @@ class _LoginState extends State<Login> {
                         children: [
                           TextButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, "home");
+                                signInWithEmailAndPassword();
+                                // Navigator.pushNamed(context, "home");
                               },
                               child: const Text(
                                 "Login",

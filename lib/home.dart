@@ -199,7 +199,17 @@ class _HomeState extends State<Home> {
                               ),
                             );
                           },
-                        ))
+                        )),
+                    Container(
+                      child: Stack(
+                        children: [
+                          Positioned(
+                              child: CircleAvatar(
+                            backgroundColor: Colors.blue,
+                          ))
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
