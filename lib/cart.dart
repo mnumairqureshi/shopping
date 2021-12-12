@@ -31,6 +31,22 @@ class _CartState extends State<Cart> {
           )
         ],
       ),
+      body: Center(
+        child: TextButton(
+          style: TextButton.styleFrom(backgroundColor: Colors.green),
+          onPressed: () {
+            Navigator.pushNamed(context, 'home');
+          },
+          child: Text(
+            "Go To Home\nPage",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
+          ),
+        ),
+      ),
     );
   }
 

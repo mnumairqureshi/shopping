@@ -13,24 +13,41 @@ class _FavoriteState extends State<Favorite> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-      actions: [
-        IconButton(
-            onPressed: () {
-              // Navigator.pushNamed(context, 'notification');
-            },
-            icon: Icon(Icons.notifications)),
-        PopupMenuButton<MenuItem>(
-          onSelected: (item) => onSelected(context, item),
-          itemBuilder: (context) => [
-            ...MenuItems.itemFirst.map(buildItem).toList(),
-            PopupMenuDivider(),
-            ...MenuItems.itemSecond.map(buildItem).toList(),
-          ],
-        )
-      ],
-      title: Text("Favorite"),
-    ));
+      appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                // Navigator.pushNamed(context, 'notification');
+              },
+              icon: Icon(Icons.notifications)),
+          PopupMenuButton<MenuItem>(
+            onSelected: (item) => onSelected(context, item),
+            itemBuilder: (context) => [
+              ...MenuItems.itemFirst.map(buildItem).toList(),
+              PopupMenuDivider(),
+              ...MenuItems.itemSecond.map(buildItem).toList(),
+            ],
+          )
+        ],
+        title: Text("Favorite"),
+      ),
+      body: Center(
+        child: TextButton(
+          style: TextButton.styleFrom(backgroundColor: Colors.green),
+          onPressed: () {
+            Navigator.pushNamed(context, 'home');
+          },
+          child: Text(
+            "Go To Home\nPage",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   PopupMenuItem<MenuItem> buildItem(MenuItem item) => PopupMenuItem(

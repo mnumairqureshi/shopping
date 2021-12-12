@@ -1,5 +1,5 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping/myDrawer.dart';
 import 'package:shopping/cart.dart';
 import 'package:shopping/favorite.dart';
 import 'package:shopping/forgetpass.dart';
@@ -8,6 +8,7 @@ import 'package:shopping/home.dart';
 import 'package:shopping/profile.dart';
 import 'package:shopping/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

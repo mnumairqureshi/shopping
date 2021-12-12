@@ -52,23 +52,26 @@ class _HomeState extends State<Home> {
               ),
               DrawerHeader(
                 child: UserAccountsDrawerHeader(
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                    ),
-                    accountName: Text(
-                      "Muhammad Numair Qureshi",
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    accountEmail: Text(
-                      "numair_qureshi@yahoo.com",
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
-                    )),
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                  ),
+                  accountName: Text(
+                    "Muhammad Numair Qureshi",
+                    style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  accountEmail: Text(
+                    "numair_qureshi@yahoo.com",
+                    style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  onDetailsPressed: () {},
+                  arrowColor: Colors.blue,
+                ),
               ),
               ListTile(
                 leading: Icon(
@@ -128,20 +131,6 @@ class _HomeState extends State<Home> {
               ),
               ListTile(
                 leading: Icon(
-                  Icons.logout,
-                  color: Colors.blue,
-                ),
-                title: Text("Logout", style: TextStyle(color: Colors.blue)),
-                trailing: Icon(
-                  Icons.arrow_forward_sharp,
-                  color: Colors.blue,
-                ),
-                onTap: () {
-                  Navigator.pushNamed(context, 'login');
-                },
-              ),
-              ListTile(
-                leading: Icon(
                   Icons.login,
                   color: Colors.blue,
                 ),
@@ -155,6 +144,26 @@ class _HomeState extends State<Home> {
                   Navigator.pushNamed(context, 'signup');
                 },
               ),
+              Divider(),
+              SizedBox(height: 125),
+              Expanded(
+                  child: Align(
+                alignment: Alignment.bottomCenter,
+                child: ListTile(
+                  leading: Icon(
+                    Icons.logout,
+                    color: Colors.blue,
+                  ),
+                  title: Text("Logout", style: TextStyle(color: Colors.blue)),
+                  trailing: Icon(
+                    Icons.arrow_forward_sharp,
+                    color: Colors.blue,
+                  ),
+                  onTap: () {
+                    Navigator.pushNamed(context, 'login');
+                  },
+                ),
+              )),
             ],
           ),
         ),
