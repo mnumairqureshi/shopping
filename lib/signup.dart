@@ -29,6 +29,7 @@ class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade800,
       appBar: AppBar(
         title: Text("Sign up"),
       ),
@@ -114,20 +115,30 @@ class _SignupState extends State<Signup> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
+                      style:
+                          TextButton.styleFrom(backgroundColor: Colors.green),
                       onPressed: () {
                         signup();
                       },
                       child: Text(
                         "Sign Up",
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
                       )),
                   TextButton(
+                      style:
+                          TextButton.styleFrom(backgroundColor: Colors.green),
                       onPressed: () {
                         Navigator.pushNamed(context, 'login');
                       },
                       child: Text(
                         "Already \nSign up",
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
                       )),
                 ],
               )

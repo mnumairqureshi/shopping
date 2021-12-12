@@ -31,28 +31,34 @@ class _LoginState extends State<Login> {
         context,
         MaterialPageRoute(builder: (context) => Home()),
       );
+
       Fluttertoast.showToast(msg: "Logged in");
 
-      // if(userCredential != null){
+      //   if(userCredential != null){
       //   FirebaseFirestore firestore = FirebaseFirestore.instance;
       //   FirebaseFirestore.instance.collection('userdatashot snap){
 
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        Navigator.pop(context);
-        Fluttertoast.showToast(msg: 'No user found for that email.');
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Signup()));
+        Fluttertoast.showToast(
+            msg: 'No user found for that email.\nPlease Create New Account');
       } else if (e.code == 'wrong-password') {
-        Navigator.pop(context);
-        Fluttertoast.showToast(msg: 'Wrong password provided for that user.');
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Login()));
+        Fluttertoast.showToast(
+            msg:
+                'Wrong password provided for that user.\nPlease Sign In Again');
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Scaffold(
-      // drawer: Drawer(child: Mydrawer()),
+    return Scaffold(
+      // drawer: const Mydrawer(),
+
       drawer: Drawer(
         child: ListView(
           children: [
@@ -151,7 +157,7 @@ class _LoginState extends State<Login> {
                     ),
                     TextField(
                         controller: passwdtxt,
-                        obscureText: false,
+                        obscureText: true,
                         decoration: InputDecoration(
                             labelText: "Password",
                             fillColor: Colors.grey.shade200,
@@ -165,22 +171,20 @@ class _LoginState extends State<Login> {
                     const SizedBox(
                       height: 1,
                     ),
-                    // FlutterPwValidator(
-                    //     width: 400,
-                    //     height: 70,
-                    //     minLength: 7,
-                    //     uppercaseCharCount: 1,
-                    //     numericCharCount: 2,
-                    //     successColor: Colors.green,
-                    //     failureColor: Colors.red,
-                    //     // specialCharCount: 1,
-                    //     onSuccess: () {
-                    //       Navigator.pushNamed(context, 'home');
-                    //       // print("Matched");
-                    //       // Scaffold.of(context).showSnackBar(
-                    //       //     SnackBar(content: Text("Password is matched")));
-                    //     },
-                    //     controller: passwdtxt),
+                    FlutterPwValidator(
+                        width: 400,
+                        height: 70,
+                        minLength: 8,
+                        successColor: Colors.green,
+                        failureColor: Colors.red,
+                        // specialCharCount: 1,
+                        onSuccess: () {
+                          // Navigator.pushNamed(context, 'home');
+                          // print("Matched");
+                          // Scaffold.of(context).showSnackBar(
+                          //     SnackBar(content: Text("Password is matched")));
+                        },
+                        controller: passwdtxt),
                     const SizedBox(
                       height: 125,
                     ),
@@ -247,7 +251,7 @@ class _LoginState extends State<Login> {
           ],
         ),
       ),
-    ));
+    );
   }
 }
 
